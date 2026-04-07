@@ -13,7 +13,7 @@
               extend: {
                 colors: {
                   "primary": "#39FF14",
-                  "background": "#0e0e0e",
+                  "background": "#000000",
                 },
                 fontFamily: {
                   "headline": ["Space Grotesk"],
@@ -25,48 +25,65 @@
           }
     </script>
     <style>
-        .liquid-glass-strong {
-            background: rgba(14, 14, 14, 0.6);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        /* Realistic Earth Backdrop */
+        .earth-container {
+            background: radial-gradient(circle at center, #111 0%, #000 100%);
+            overflow: hidden;
         }
-        .ticker-wrap { width: 100%; overflow: hidden; background: rgba(0,0,0,0.5); border-bottom: 1px solid rgba(57, 255, 20, 0.1); }
+        
+        .liquid-glass-strong {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .ticker-wrap { width: 100%; overflow: hidden; background: rgba(0,0,0,0.8); border-bottom: 1px solid rgba(57, 255, 20, 0.2); }
         .ticker { display: inline-block; white-space: nowrap; animation: ticker 60s linear infinite; }
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         
         [x-cloak] { display: none !important; }
-        .section-enter { animation: enter 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .section-enter { animation: enter 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
         @keyframes enter {
-            from { opacity: 0; transform: scale(0.98) translateY(10px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         .custom-scrollbar::-webkit-scrollbar { width: 4px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(57, 255, 20, 0.3); border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(57, 255, 20, 0.4); border-radius: 10px; }
+        
+        /* Realistic Globe Lighting Overlay */
+        .globe-lighting {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 70% 80%, rgba(255,255,255,0.15) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: 1;
+        }
     </style>
 </head>
-<body class="bg-background text-white font-body overflow-hidden h-screen w-full" x-data="{ activeSection: 'hero' }">
+<body class="earth-container text-white font-body overflow-hidden h-screen w-full" x-data="{ activeSection: 'hero' }">
 
-<div class="fixed inset-0 z-0">
-    <video autoplay class="w-full h-full object-cover opacity-40" loop muted playsinline>
-        <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260315_073750_51473149-4350-4920-ae24-c8214286f323.mp4" type="video/mp4"/>
+<div class="fixed inset-0 z-0 flex items-center justify-center scale-110">
+    <video autoplay class="w-full h-full object-cover" loop muted playsinline style="filter: contrast(1.1) brightness(0.9);">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-planet-earth-rotating-in-space-2051-large.mp4" type="video/mp4"/>
     </video>
-    <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="globe-lighting"></div>
 </div>
 
 <div class="fixed top-0 w-full z-[60] ticker-wrap py-2">
-    <div class="ticker font-headline text-[9px] tracking-[0.3em] text-primary/70 uppercase">
+    <div class="ticker font-headline text-[9px] tracking-[0.4em] text-primary uppercase">
         PROTOCOL 01: MERIT-BASED SYNC • PROTOCOL 02: INCLUSIVE GROWTH • PROTOCOL 03: EDITORIAL CLARITY • PROTOCOL 04: DATA SOVEREIGNTY • PROTOCOL 05: GOOGLE CO-WORK • PROTOCOL 06: THE BIG RESET • 
-        PROTOCOL 01: MERIT-BASED SYNC • PROTOCOL 02: INCLUSIVE GROWTH • PROTOCOL 03: EDITORIAL CLARITY • PROTOCOL 04: DATA SOVEREIGNTY • PROTOCOL 05: GOOGLE CO-WORK • PROTOCOL 06: THE BIG RESET
     </div>
 </div>
 
-<nav class="fixed top-10 left-0 right-0 z-50 flex justify-center">
-    <div class="bg-black/40 backdrop-blur-2xl rounded-full border border-white/10 px-6 py-2 flex items-center gap-8 shadow-[0_0_20px_rgba(0,0,0,0.5)]">
-        <button @click="activeSection = 'hero'" class="text-lg font-bold tracking-tighter font-headline hover:text-primary transition-colors">teamcord<span class="text-primary">.ai</span></button>
-        <div class="flex gap-6 text-[10px] uppercase tracking-widest font-headline">
+<nav class="fixed top-12 left-0 right-0 z-50 flex justify-center">
+    <div class="bg-black/60 backdrop-blur-3xl rounded-full border border-white/10 px-8 py-2.5 flex items-center gap-10">
+        <button @click="activeSection = 'hero'" class="text-xl font-bold tracking-tighter font-headline uppercase">teamcord<span class="text-primary">.ai</span></button>
+        <div class="flex gap-8 text-[10px] uppercase tracking-widest font-headline">
             <button @click="activeSection = 'competitions'" :class="activeSection === 'competitions' ? 'text-primary' : 'text-white/40 hover:text-white'">Competitions</button>
             <button @click="activeSection = 'tenders'" :class="activeSection === 'tenders' ? 'text-primary' : 'text-white/40 hover:text-white'">Tenders</button>
             <button @click="activeSection = 'dna'" :class="activeSection === 'dna' ? 'text-primary' : 'text-white/40 hover:text-white'">The Ledger</button>
@@ -75,16 +92,16 @@
 </nav>
 
 <main x-show="activeSection === 'hero'" x-cloak class="relative z-10 flex items-center justify-center h-full px-6 section-enter">
-    <div class="liquid-glass-strong w-full max-w-4xl p-12 md:p-20 rounded-[3rem] text-center space-y-10 shadow-2xl">
-        <div class="space-y-4">
-            <h1 class="font-headline font-bold text-7xl md:text-8xl tracking-tighter leading-none uppercase">TEAM<span class="text-primary">CORD.AI</span></h1>
-            <h2 class="font-serif-italic italic text-2xl text-white/90">Beyond the Static Resume. <span class="text-primary/70">The Editorial Era.</span></h2>
+    <div class="liquid-glass-strong w-full max-w-4xl p-16 md:p-24 rounded-[4rem] text-center space-y-12">
+        <div class="space-y-6">
+            <h1 class="font-headline font-bold text-7xl md:text-9xl tracking-tighter leading-none uppercase">TEAM<span class="text-primary">CORD.AI</span></h1>
+            <h2 class="font-serif-italic italic text-2xl md:text-3xl text-white/90">Beyond the Static Resume. <span class="text-primary/80">The Editorial Era.</span></h2>
         </div>
-        <p class="max-w-xl mx-auto text-white/50 text-lg font-light leading-relaxed">A recruiter-free digital catalyst for the 1.2T infrastructure industry. We translate your complex technical DNA into planetary action.</p>
-        <div class="flex flex-wrap justify-center gap-6">
-            <button @click="activeSection = 'competitions'" class="liquid-glass-strong px-8 py-4 rounded-full font-serif-italic italic hover:bg-white/10 transition-all">Global Competitions</button>
-            <button @click="activeSection = 'tenders'" class="liquid-glass-strong px-8 py-4 rounded-full font-serif-italic italic hover:bg-white/10 transition-all">Global Tenders</button>
-            <button @click="activeSection = 'dna'" class="bg-primary text-black px-10 py-4 rounded-full font-serif-italic italic font-bold hover:scale-105 transition-all shadow-[0_0_30px_rgba(57,255,20,0.3)]">Sync Your Technical DNA</button>
+        <p class="max-w-2xl mx-auto text-white/50 text-xl font-light leading-relaxed">The recruiter-free digital catalyst for the 1.2T infrastructure industry. We translate your complex technical DNA into planetary action.</p>
+        <div class="flex flex-wrap justify-center gap-6 pt-4">
+            <button @click="activeSection = 'competitions'" class="liquid-glass-strong px-10 py-5 rounded-full font-serif-italic italic text-lg hover:bg-white/10 transition-all">Global Competitions</button>
+            <button @click="activeSection = 'tenders'" class="liquid-glass-strong px-10 py-5 rounded-full font-serif-italic italic text-lg hover:bg-white/10 transition-all">Global Tenders</button>
+            <button @click="activeSection = 'dna'" class="bg-primary text-black px-12 py-5 rounded-full font-serif-italic italic font-bold text-xl hover:scale-105 transition-all shadow-[0_0_50px_rgba(57,255,20,0.4)]">Sync Your Technical DNA</button>
         </div>
     </div>
 </main>
@@ -93,97 +110,25 @@
     <div class="liquid-glass-strong w-full max-w-5xl h-[75vh] p-12 rounded-[3.5rem] flex flex-col relative">
         <div class="flex justify-between items-end mb-10 border-b border-white/5 pb-6">
             <div>
-                <h3 class="font-headline text-4xl uppercase tracking-tighter">Live <span class="text-primary">Arena</span> / Competitions</h3>
+                <h3 class="font-headline text-4xl uppercase tracking-tighter">Live <span class="text-primary">Arena</span></h3>
                 <p class="text-serif-italic italic text-white/40">Restorative imperatives seeking visionary architectural merit.</p>
             </div>
             <button @click="activeSection = 'hero'" class="text-[10px] uppercase tracking-widest text-white/30 hover:text-primary transition-colors mb-2">← Back to Command</button>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 overflow-y-auto pr-4 custom-scrollbar">
-            
-            <div class="p-8 bg-black/40 rounded-[2rem] border border-white/10 hover:border-primary/50 transition-all group cursor-pointer">
-                <div class="flex justify-between items-start mb-4">
+            <div class="p-10 bg-black/40 rounded-[2.5rem] border border-white/10 hover:border-primary/50 transition-all group">
+                <div class="flex justify-between items-start mb-6">
                     <span class="text-[10px] text-primary tracking-[0.2em] uppercase font-headline">Design / EU</span>
-                    <span class="text-[10px] text-white/20 uppercase font-headline">Ends in 14d</span>
                 </div>
-                <h4 class="font-serif-italic italic text-2xl mb-3 group-hover:text-primary transition-colors">Seine Restorative Waterfront 2026</h4>
-                <p class="text-xs text-white/50 mb-4 leading-relaxed">AI-Editorial Summary: Focus on bio-filtration and flood-resilient zoning. Requires verified Ph.D. in Urban Planning + 10yr Hydrology experience.</p>
-                <div class="flex gap-2">
-                    <span class="px-3 py-1 bg-primary/10 rounded-full text-[9px] uppercase text-primary border border-primary/20">Ph.D. Verified</span>
-                    <span class="px-3 py-1 bg-white/5 rounded-full text-[9px] uppercase text-white/40 border border-white/5">Ecology Reset</span>
-                </div>
+                <h4 class="font-serif-italic italic text-2xl mb-4 group-hover:text-primary transition-colors">Seine Restorative Waterfront 2026</h4>
+                <p class="text-sm text-white/50 leading-relaxed">AI-Editorial Summary: Focus on bio-filtration and flood-resilient zoning. Requires verified Ph.D. in Urban Planning + 10yr Hydrology experience.</p>
             </div>
-
-            <div class="p-8 bg-black/40 rounded-[2rem] border border-white/10 hover:border-primary/50 transition-all group cursor-pointer">
-                <div class="flex justify-between items-start mb-4">
-                    <span class="text-[10px] text-primary tracking-[0.2em] uppercase font-headline">Creative Arena / US</span>
-                    <span class="text-[10px] text-white/20 uppercase font-headline">Ends in 28d</span>
-                </div>
-                <h4 class="font-serif-italic italic text-2xl mb-3 group-hover:text-primary transition-colors">The Gotham Carbon-Sink Grid</h4>
-                <p class="text-xs text-white/50 mb-4 leading-relaxed">AI-Editorial Summary: Integrating mass-timber modules into existing FAR structures. Seeking LEED Platinum specialists and AI-Visualization experts.</p>
-                <div class="flex gap-2">
-                    <span class="px-3 py-1 bg-primary/10 rounded-full text-[9px] uppercase text-primary border border-primary/20">Mass Timber</span>
-                    <span class="px-3 py-1 bg-white/5 rounded-full text-[9px] uppercase text-white/40 border border-white/5">Zoning Edge</span>
-                </div>
-            </div>
-
         </div>
     </div>
 </section>
 
-<section x-show="activeSection === 'tenders'" x-cloak class="relative z-10 flex items-center justify-center h-full px-6 section-enter">
-    <div class="liquid-glass-strong w-full max-w-5xl h-[75vh] p-12 rounded-[3.5rem] flex flex-col relative border-primary/20">
-        <div class="flex justify-between items-end mb-10 border-b border-white/5 pb-6">
-            <div>
-                <h3 class="font-headline text-4xl uppercase tracking-tighter"><span class="text-primary">Procure</span> / Tenders</h3>
-                <p class="text-serif-italic italic text-white/40">Technical implementation protocols & corporate procurement.</p>
-            </div>
-            <button @click="activeSection = 'hero'" class="text-[10px] uppercase tracking-widest text-white/30 hover:text-primary transition-colors mb-2">← Back to Command</button>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 overflow-y-auto pr-4 custom-scrollbar">
-            
-            <div class="p-8 bg-black/40 rounded-[2rem] border border-white/10 hover:border-primary/50 transition-all group cursor-pointer">
-                <div class="flex justify-between items-start mb-4">
-                    <span class="text-[10px] text-primary tracking-[0.2em] uppercase font-headline">Infrastructure / MENA</span>
-                    <span class="text-[10px] text-white/20 uppercase font-headline">Status: Verified</span>
-                </div>
-                <h4 class="font-serif-italic italic text-2xl mb-3 group-hover:text-primary transition-colors">NEOM Solar-Thermal Grid Phase II</h4>
-                <p class="text-xs text-white/50 mb-4">AI-Editorial Summary: Complex logistics tender for PV-Integrated structural glazing. Seeking firms with verified Reliability Ledger scores > 90.</p>
-                <div class="flex gap-2">
-                    <span class="px-3 py-1 bg-primary/10 rounded-full text-[9px] uppercase text-primary border border-primary/20">Logistics DNA</span>
-                    <span class="px-3 py-1 bg-white/5 rounded-full text-[9px] uppercase text-white/40 border border-white/5">Energy Reset</span>
-                </div>
-            </div>
-
-            <div class="p-8 bg-black/40 rounded-[2rem] border border-white/10 hover:border-primary/50 transition-all group cursor-pointer">
-                <div class="flex justify-between items-start mb-4">
-                    <span class="text-[10px] text-primary tracking-[0.2em] uppercase font-headline">Public Works / NYC</span>
-                    <span class="text-[10px] text-white/20 uppercase font-headline">UDAAP Review</span>
-                </div>
-                <h4 class="font-serif-italic italic text-2xl mb-3 group-hover:text-primary transition-colors">Brooklyn Social Housing Consortium</h4>
-                <p class="text-xs text-white/50 mb-4 leading-relaxed">AI-Editorial Summary: Multi-site redevelopment requiring rapid zoning iteration via Teamcord AI tools. Preference for NYC DCP-experienced planners.</p>
-                <div class="flex gap-2">
-                    <span class="px-3 py-1 bg-primary/10 rounded-full text-[9px] uppercase text-primary border border-primary/20">Zoning Verified</span>
-                    <span class="px-3 py-1 bg-white/5 rounded-full text-[9px] uppercase text-white/40 border border-white/5">Social Housing</span>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<section x-show="activeSection === 'dna'" x-cloak class="relative z-10 flex items-center justify-center h-full px-6 section-enter">
-    <div class="liquid-glass-strong w-full max-w-4xl p-12 rounded-[3.5rem] text-center space-y-8">
-        <h3 class="font-headline text-4xl tracking-tighter uppercase text-white">Initialize <span class="text-primary">DNA Protocol</span></h3>
-        <div class="border-2 border-dashed border-white/10 rounded-[2.5rem] p-16 hover:border-primary/40 transition-all cursor-pointer group bg-black/20">
-            <div class="w-16 h-16 bg-white/5 rounded-full mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform"><span class="text-primary text-3xl font-bold">↑</span></div>
-            <p class="text-sm text-white/60 mb-2 font-serif-italic italic">Drag & Drop Documents for Editorial Synthesis</p>
-            <p class="text-[10px] text-white/20 uppercase tracking-[0.3em]">Sovereign Encryption Active / No Data Resale</p>
-        </div>
-    </div>
-</section>
-
-<footer class="fixed bottom-0 w-full py-8 text-center z-40 bg-transparent">
-    <span class="font-serif-italic italic text-[10px] tracking-widest text-white/20 uppercase">
+<footer class="fixed bottom-0 w-full py-10 text-center z-40 bg-transparent">
+    <span class="font-serif-italic italic text-[11px] tracking-widest text-white/20 uppercase">
         © 2026 Teamcord.ai | A Recruiter-Free Industry Reset Protocol
     </span>
 </footer>
