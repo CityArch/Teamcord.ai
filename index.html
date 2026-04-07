@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Teamcord.ai | The Editorial Intelligence Protocol</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=Source+Serif+4:ital,opsz,wght@1,8..60,300;1,8..60,400;1,8..60,600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+          tailwind.config = {
+            darkMode: "class",
+            theme: {
+              extend: {
+                colors: {
+                  "primary": "#39FF14",
+                  "background": "#0e0e0e",
+                  "on-surface": "#ffffff",
+                  "surface-container": "#1a1a1a",
+                },
+                fontFamily: {
+                  "headline": ["Space Grotesk"],
+                  "body": ["Manrope"],
+                  "serif-italic": ["Source Serif 4"]
+                },
+              },
+            },
+          }
+    </script>
+    <style>
+        .liquid-glass-strong {
+            background: rgba(14, 14, 14, 0.4);
+            backdrop-filter: blur(50px);
+            -webkit-backdrop-filter: blur(50px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+        }
+        
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            background: rgba(0,0,0,0.3);
+            border-bottom: 1px solid rgba(57, 255, 20, 0.1);
+        }
+
+        .ticker {
+            display: inline-block;
+            white-space: nowrap;
+            padding-right: 100%;
+            animation: ticker 60s linear infinite;
+        }
+
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+
+        .pulse-glow-primary {
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.2);
+            animation: glow-pulse 3s infinite ease-in-out;
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% { box-shadow: 0 0 15px rgba(57, 255, 20, 0.15); }
+            50% { box-shadow: 0 0 35px rgba(57, 255, 20, 0.5); }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30 overflow-hidden h-screen w-full">
+
+<div class="fixed inset-0 z-0">
+    <video autoplay class="w-full h-full object-cover opacity-60" loop muted playsinline>
+        <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260315_073750_51473149-4350-4920-ae24-c8214286f323.mp4" type="video/mp4"/>
+    </video>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/90"></div>
+</div>
+
+<div class="fixed top-0 w-full z-[60] ticker-wrap py-2">
+    <div class="ticker font-headline text-[10px] tracking-[0.3em] text-primary/80 uppercase">
+        PROTOCOL 01: MERIT-BASED SYNC • PROTOCOL 02: INCLUSIVE GROWTH • PROTOCOL 03: EDITORIAL CLARITY • PROTOCOL 04: DATA SOVEREIGNTY (NO SALES) • PROTOCOL 05: GOOGLE CO-WORK ENABLED • PROTOCOL 06: THE BIG RESET • 
+        PROTOCOL 01: MERIT-BASED SYNC • PROTOCOL 02: INCLUSIVE GROWTH • PROTOCOL 03: EDITORIAL CLARITY • PROTOCOL 04: DATA SOVEREIGNTY (NO SALES) • PROTOCOL 05: GOOGLE CO-WORK ENABLED • PROTOCOL 06: THE BIG RESET
+    </div>
+</div>
+
+<nav class="fixed top-10 left-0 right-0 z-50 flex justify-center w-full">
+    <div class="bg-black/40 backdrop-blur-2xl rounded-full border border-white/5 px-8 py-3 flex items-center gap-12">
+        <span class="text-xl font-bold tracking-tighter text-white font-headline">teamcord<span class="text-primary">.ai</span></span>
+        <div class="hidden md:flex items-center gap-8 text-[10px] uppercase tracking-widest font-headline text-white/50">
+            <a class="hover:text-primary transition-colors" href="#">The Arena</a>
+            <a class="hover:text-primary transition-colors" href="#">Procurement</a>
+            <a class="hover:text-primary transition-colors" href="#">Reliability Ledger</a>
+        </div>
+    </div>
+</nav>
+
+<main class="relative z-10 flex items-center justify-center h-full px-6">
+    <div class="liquid-glass-strong w-full max-w-4xl p-12 md:p-16 rounded-[2.5rem] flex flex-col items-center text-center space-y-12">
+        <div class="space-y-6">
+            <h1 class="font-headline font-bold text-7xl md:text-9xl tracking-tighter leading-none">
+                <span class="text-white">TEAM</span><span class="text-primary">CORD.AI</span>
+            </h1>
+            <h2 class="font-serif-italic italic text-2xl md:text-3xl text-white/90 tracking-tight">
+                Beyond the Static Resume. <span class="text-primary/80">The Era of Editorial Intelligence.</span>
+            </h2>
+        </div>
+
+        <p class="max-w-2xl text-white/60 text-lg leading-relaxed font-light">
+            We don't host resumes; we decode Technical DNA. Teamcord.ai is the recruiter-free digital catalyst where AI synthesizes your complex achievements into global infrastructure opportunities. Heal the planet through collective intelligence.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-6 pt-4">
+            <button class="liquid-glass-strong px-10 py-5 rounded-full font-serif-italic italic text-lg hover:bg-white/10 transition-all duration-300">
+                Global Competitions
+            </button>
+            <button class="liquid-glass-strong px-10 py-5 rounded-full font-serif-italic italic text-lg hover:bg-white/10 transition-all duration-300">
+                Global Tenders
+            </button>
+            <button class="pulse-glow-primary bg-primary text-black px-10 py-5 rounded-full font-serif-italic italic font-bold text-lg hover:scale-105 active:scale-95 transition-all duration-300">
+                Sync Your Technical DNA
+            </button>
+        </div>
+    </div>
+</main>
+
+<div class="fixed bottom-12 left-12 z-20 hidden lg:block opacity-40 hover:opacity-100 transition-opacity">
+    <div class="flex items-center gap-3 font-headline uppercase tracking-[0.3em] text-[9px] text-primary">
+        <span class="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></span>
+        ENCRYPTED SOVEREIGN LAYER
+    </div>
+</div>
+
+<footer class="fixed bottom-0 w-full px-12 py-8 flex justify-center items-center z-40 bg-transparent">
+    <span class="font-serif-italic italic text-[11px] tracking-widest text-white/30 uppercase">
+        © 2026 Teamcord.ai | 1.2T Global Industry Reset Protocol
+    </span>
+</footer>
+
+<div class="fixed inset-0 pointer-events-none z-30 opacity-[0.04] mix-blend-overlay">
+    <div class="w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
+</div>
+</body>
+</html>
