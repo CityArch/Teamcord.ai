@@ -6,7 +6,6 @@
     <title>Teamcord.ai | The Editorial Intelligence Protocol</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=Source+Serif+4:ital,opsz,wght@1,8..60,300;1,8..60,400;1,8..60,600&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <script id="tailwind-config">
           tailwind.config = {
             darkMode: "class",
@@ -15,8 +14,6 @@
                 colors: {
                   "primary": "#39FF14",
                   "background": "#0e0e0e",
-                  "on-surface": "#ffffff",
-                  "surface-container": "#1a1a1a",
                 },
                 fontFamily: {
                   "headline": ["Space Grotesk"],
@@ -29,114 +26,102 @@
     </script>
     <style>
         .liquid-glass-strong {
-            background: rgba(14, 14, 14, 0.4);
-            backdrop-filter: blur(50px);
-            -webkit-backdrop-filter: blur(50px);
+            background: rgba(14, 14, 14, 0.6);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
         }
-        
-        .ticker-wrap {
-            width: 100%;
-            overflow: hidden;
-            background: rgba(0,0,0,0.3);
-            border-bottom: 1px solid rgba(57, 255, 20, 0.1);
-        }
-
-        .ticker {
-            display: inline-block;
-            white-space: nowrap;
-            padding-right: 100%;
-            animation: ticker 60s linear infinite;
-        }
-
-        @keyframes ticker {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-100%, 0, 0); }
-        }
-
-        .pulse-glow-primary {
-            box-shadow: 0 0 20px rgba(57, 255, 20, 0.2);
-            animation: glow-pulse 3s infinite ease-in-out;
-        }
-
-        @keyframes glow-pulse {
-            0%, 100% { box-shadow: 0 0 15px rgba(57, 255, 20, 0.15); }
-            50% { box-shadow: 0 0 35px rgba(57, 255, 20, 0.5); }
-        }
+        .ticker-wrap { width: 100%; overflow: hidden; background: rgba(0,0,0,0.5); border-bottom: 1px solid rgba(57, 255, 20, 0.1); }
+        .ticker { display: inline-block; white-space: nowrap; animation: ticker 60s linear infinite; }
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .section-exit { opacity: 0; transform: scale(0.95); pointer-events: none; position: absolute; }
+        .section-enter { opacity: 1; transform: scale(1); transition: all 0.5s ease-out; }
     </style>
 </head>
-<body class="bg-background text-on-surface font-body selection:bg-primary/30 overflow-hidden h-screen w-full">
+<body class="bg-background text-white font-body overflow-hidden h-screen w-full" x-data="{ activeSection: 'hero' }">
 
 <div class="fixed inset-0 z-0">
-    <video autoplay class="w-full h-full object-cover opacity-60" loop muted playsinline>
+    <video autoplay class="w-full h-full object-cover opacity-40" loop muted playsinline>
         <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260315_073750_51473149-4350-4920-ae24-c8214286f323.mp4" type="video/mp4"/>
     </video>
-    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/90"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
 </div>
 
 <div class="fixed top-0 w-full z-[60] ticker-wrap py-2">
-    <div class="ticker font-headline text-[10px] tracking-[0.3em] text-primary/80 uppercase">
-        PROTOCOL 01: MERIT-BASED SYNC • PROTOCOL 02: INCLUSIVE GROWTH • PROTOCOL 03: EDITORIAL CLARITY • PROTOCOL 04: DATA SOVEREIGNTY (NO SALES) • PROTOCOL 05: GOOGLE CO-WORK ENABLED • PROTOCOL 06: THE BIG RESET • 
-        PROTOCOL 01: MERIT-BASED SYNC • PROTOCOL 02: INCLUSIVE GROWTH • PROTOCOL 03: EDITORIAL CLARITY • PROTOCOL 04: DATA SOVEREIGNTY (NO SALES) • PROTOCOL 05: GOOGLE CO-WORK ENABLED • PROTOCOL 06: THE BIG RESET
+    <div class="ticker font-headline text-[9px] tracking-[0.3em] text-primary/70 uppercase">
+        PROTOCOL 01: MERIT-BASED SYNC • PROTOCOL 02: INCLUSIVE GROWTH • PROTOCOL 03: EDITORIAL CLARITY • PROTOCOL 04: DATA SOVEREIGNTY • PROTOCOL 05: GOOGLE CO-WORK • PROTOCOL 06: THE BIG RESET • 
+        PROTOCOL 01: MERIT-BASED SYNC • PROTOCOL 02: INCLUSIVE GROWTH • PROTOCOL 03: EDITORIAL CLARITY • PROTOCOL 04: DATA SOVEREIGNTY • PROTOCOL 05: GOOGLE CO-WORK • PROTOCOL 06: THE BIG RESET
     </div>
 </div>
 
-<nav class="fixed top-10 left-0 right-0 z-50 flex justify-center w-full">
-    <div class="bg-black/40 backdrop-blur-2xl rounded-full border border-white/5 px-8 py-3 flex items-center gap-12">
-        <span class="text-xl font-bold tracking-tighter text-white font-headline">teamcord<span class="text-primary">.ai</span></span>
-        <div class="hidden md:flex items-center gap-8 text-[10px] uppercase tracking-widest font-headline text-white/50">
-            <a class="hover:text-primary transition-colors" href="#">The Arena</a>
-            <a class="hover:text-primary transition-colors" href="#">Procurement</a>
-            <a class="hover:text-primary transition-colors" href="#">Reliability Ledger</a>
+<nav class="fixed top-10 left-0 right-0 z-50 flex justify-center">
+    <div class="bg-black/40 backdrop-blur-2xl rounded-full border border-white/10 px-6 py-2 flex items-center gap-8">
+        <button @click="activeSection = 'hero'" class="text-lg font-bold tracking-tighter font-headline">teamcord<span class="text-primary">.ai</span></button>
+        <div class="flex gap-6 text-[10px] uppercase tracking-widest font-headline">
+            <button @click="activeSection = 'competitions'" :class="activeSection === 'competitions' ? 'text-primary' : 'text-white/40'">Competitions</button>
+            <button @click="activeSection = 'tenders'" :class="activeSection === 'tenders' ? 'text-primary' : 'text-white/40'">Tenders</button>
+            <button @click="activeSection = 'dna'" :class="activeSection === 'dna' ? 'text-primary' : 'text-white/40'">The Ledger</button>
         </div>
     </div>
 </nav>
 
-<main class="relative z-10 flex items-center justify-center h-full px-6">
-    <div class="liquid-glass-strong w-full max-w-4xl p-12 md:p-16 rounded-[2.5rem] flex flex-col items-center text-center space-y-12">
-        <div class="space-y-6">
-            <h1 class="font-headline font-bold text-7xl md:text-9xl tracking-tighter leading-none">
-                <span class="text-white">TEAM</span><span class="text-primary">CORD.AI</span>
-            </h1>
-            <h2 class="font-serif-italic italic text-2xl md:text-3xl text-white/90 tracking-tight">
-                Beyond the Static Resume. <span class="text-primary/80">The Era of Editorial Intelligence.</span>
-            </h2>
+<main x-show="activeSection === 'hero'" class="relative z-10 flex items-center justify-center h-full px-6 section-enter">
+    <div class="liquid-glass-strong w-full max-w-4xl p-12 md:p-20 rounded-[3rem] text-center space-y-10">
+        <div class="space-y-4">
+            <h1 class="font-headline font-bold text-7xl md:text-8xl tracking-tighter leading-none">TEAM<span class="text-primary">CORD.AI</span></h1>
+            <h2 class="font-serif-italic italic text-2xl text-white/90">Beyond the Static Resume. <span class="text-primary/70">The Editorial Era.</span></h2>
         </div>
-
-        <p class="max-w-2xl text-white/60 text-lg leading-relaxed font-light">
-            We don't host resumes; we decode Technical DNA. Teamcord.ai is the recruiter-free digital catalyst where AI synthesizes your complex achievements into global infrastructure opportunities. Heal the planet through collective intelligence.
-        </p>
-
-        <div class="flex flex-wrap justify-center gap-6 pt-4">
-            <button class="liquid-glass-strong px-10 py-5 rounded-full font-serif-italic italic text-lg hover:bg-white/10 transition-all duration-300">
-                Global Competitions
-            </button>
-            <button class="liquid-glass-strong px-10 py-5 rounded-full font-serif-italic italic text-lg hover:bg-white/10 transition-all duration-300">
-                Global Tenders
-            </button>
-            <button class="pulse-glow-primary bg-primary text-black px-10 py-5 rounded-full font-serif-italic italic font-bold text-lg hover:scale-105 active:scale-95 transition-all duration-300">
-                Sync Your Technical DNA
-            </button>
+        <p class="max-w-xl mx-auto text-white/50 text-lg font-light leading-relaxed">The recruiter-free digital catalyst for 1.2T in global infrastructure. We decode your complex technical DNA into planetary action.</p>
+        <div class="flex flex-wrap justify-center gap-6">
+            <button @click="activeSection = 'competitions'" class="liquid-glass-strong px-8 py-4 rounded-full font-serif-italic italic hover:bg-white/10 transition-all">Global Competitions</button>
+            <button @click="activeSection = 'tenders'" class="liquid-glass-strong px-8 py-4 rounded-full font-serif-italic italic hover:bg-white/10 transition-all">Global Tenders</button>
+            <button @click="activeSection = 'dna'" class="bg-primary text-black px-10 py-4 rounded-full font-serif-italic italic font-bold hover:scale-105 transition-all shadow-[0_0_30px_rgba(57,255,20,0.3)]">Sync Your Technical DNA</button>
         </div>
     </div>
 </main>
 
-<div class="fixed bottom-12 left-12 z-20 hidden lg:block opacity-40 hover:opacity-100 transition-opacity">
-    <div class="flex items-center gap-3 font-headline uppercase tracking-[0.3em] text-[9px] text-primary">
-        <span class="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></span>
-        ENCRYPTED SOVEREIGN LAYER
+<section x-show="activeSection === 'competitions'" class="relative z-10 flex items-center justify-center h-full px-6 section-enter">
+    <div class="liquid-glass-strong w-full max-w-5xl h-[70vh] p-12 rounded-[3rem] overflow-hidden flex flex-col">
+        <h3 class="font-headline text-3xl mb-8 uppercase tracking-tighter">Live <span class="text-primary">Arena</span> / Competitions</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 overflow-y-auto pr-4 custom-scrollbar">
+            <div class="p-6 bg-white/5 rounded-2xl border border-white/10 hover:border-primary/50 transition-colors cursor-pointer">
+                <span class="text-[10px] text-primary tracking-widest uppercase">Urban Design / Paris</span>
+                <h4 class="font-serif-italic italic text-xl my-2">Seine Restorative Waterfront 2026</h4>
+                <p class="text-xs text-white/40">Consortium Requirement: PhD Urban Planning + Landscape Arch.</p>
+            </div>
+            </div>
     </div>
-</div>
+</section>
 
-<footer class="fixed bottom-0 w-full px-12 py-8 flex justify-center items-center z-40 bg-transparent">
-    <span class="font-serif-italic italic text-[11px] tracking-widest text-white/30 uppercase">
-        © 2026 Teamcord.ai | 1.2T Global Industry Reset Protocol
+<section x-show="activeSection === 'dna'" class="relative z-10 flex items-center justify-center h-full px-6 section-enter">
+    <div class="liquid-glass-strong w-full max-w-4xl p-12 rounded-[3rem] text-center space-y-8">
+        <div class="space-y-2">
+            <h3 class="font-headline text-4xl tracking-tighter uppercase">Initialize <span class="text-primary">DNA Protocol</span></h3>
+            <p class="text-white/40 italic font-serif-italic">Upload your complex world. We will edit the future.</p>
+        </div>
+        
+        <div class="border-2 border-dashed border-white/10 rounded-3xl p-12 hover:border-primary/40 transition-all cursor-pointer group bg-black/20">
+            <div class="w-16 h-16 bg-white/5 rounded-full mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <span class="text-primary text-2xl">↑</span>
+            </div>
+            <p class="text-sm text-white/60">Drag & Drop Portfolio, PhD Thesis, or Zoning Certifications</p>
+            <p class="text-[10px] text-white/20 mt-2 uppercase tracking-widest">Sovereign Encryption Active - No Data Sales</p>
+        </div>
+
+        <div class="grid grid-cols-3 gap-4 text-[9px] uppercase tracking-widest text-white/40">
+            <div class="p-3 bg-white/5 rounded-lg">1. Extract</div>
+            <div class="p-3 bg-white/5 rounded-lg">2. Edit & Simplify</div>
+            <div class="p-3 bg-white/5 rounded-lg">3. Match Merit</div>
+        </div>
+    </div>
+</section>
+
+<footer class="fixed bottom-0 w-full py-8 text-center z-40 bg-transparent">
+    <span class="font-serif-italic italic text-[10px] tracking-widest text-white/20 uppercase">
+        © 2026 Teamcord.ai | A Recruiter-Free Industry Reset
     </span>
 </footer>
 
-<div class="fixed inset-0 pointer-events-none z-30 opacity-[0.04] mix-blend-overlay">
-    <div class="w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
-</div>
+<script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </body>
 </html>
