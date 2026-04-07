@@ -65,7 +65,7 @@
 
 <nav class="fixed top-10 left-0 right-0 z-50 flex justify-center">
     <div class="bg-black/40 backdrop-blur-2xl rounded-full border border-white/10 px-6 py-2 flex items-center gap-8 shadow-[0_0_20px_rgba(0,0,0,0.5)]">
-        <button @click="activeSection = 'hero'" class="text-lg font-bold tracking-tighter font-headline">teamcord<span class="text-primary">.ai</span></button>
+        <button @click="activeSection = 'hero'" class="text-lg font-bold tracking-tighter font-headline hover:text-primary transition-colors">teamcord<span class="text-primary">.ai</span></button>
         <div class="flex gap-6 text-[10px] uppercase tracking-widest font-headline">
             <button @click="activeSection = 'competitions'" :class="activeSection === 'competitions' ? 'text-primary' : 'text-white/40 hover:text-white'">Competitions</button>
             <button @click="activeSection = 'tenders'" :class="activeSection === 'tenders' ? 'text-primary' : 'text-white/40 hover:text-white'">Tenders</button>
@@ -93,20 +93,40 @@
     <div class="liquid-glass-strong w-full max-w-5xl h-[75vh] p-12 rounded-[3.5rem] flex flex-col relative">
         <div class="flex justify-between items-end mb-10 border-b border-white/5 pb-6">
             <div>
-                <h3 class="font-headline text-4xl uppercase tracking-tighter">Live <span class="text-primary">Arena</span></h3>
-                <p class="text-serif-italic italic text-white/40">High-stakes global imperatives requiring verified merit.</p>
+                <h3 class="font-headline text-4xl uppercase tracking-tighter">Live <span class="text-primary">Arena</span> / Competitions</h3>
+                <p class="text-serif-italic italic text-white/40">Restorative imperatives seeking visionary architectural merit.</p>
             </div>
             <button @click="activeSection = 'hero'" class="text-[10px] uppercase tracking-widest text-white/30 hover:text-primary transition-colors mb-2">← Back to Command</button>
         </div>
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 overflow-y-auto pr-4 custom-scrollbar">
-            <div class="p-8 bg-white/5 rounded-[2rem] border border-white/10 hover:border-primary/50 transition-all group cursor-pointer">
+            
+            <div class="p-8 bg-black/40 rounded-[2rem] border border-white/10 hover:border-primary/50 transition-all group cursor-pointer">
                 <div class="flex justify-between items-start mb-4">
-                    <span class="text-[10px] text-primary tracking-[0.2em] uppercase font-headline">Open Tender / EU</span>
+                    <span class="text-[10px] text-primary tracking-[0.2em] uppercase font-headline">Design / EU</span>
                     <span class="text-[10px] text-white/20 uppercase font-headline">Ends in 14d</span>
                 </div>
                 <h4 class="font-serif-italic italic text-2xl mb-3 group-hover:text-primary transition-colors">Seine Restorative Waterfront 2026</h4>
-                <p class="text-xs text-white/50 leading-relaxed">AI-Editorial Summary: Focus on bio-filtration and flood-resilient zoning. Requires verified Ph.D. in Urban Planning + 10yr Hydrology experience.</p>
+                <p class="text-xs text-white/50 mb-4 leading-relaxed">AI-Editorial Summary: Focus on bio-filtration and flood-resilient zoning. Requires verified Ph.D. in Urban Planning + 10yr Hydrology experience.</p>
+                <div class="flex gap-2">
+                    <span class="px-3 py-1 bg-primary/10 rounded-full text-[9px] uppercase text-primary border border-primary/20">Ph.D. Verified</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-[9px] uppercase text-white/40 border border-white/5">Ecology Reset</span>
+                </div>
             </div>
+
+            <div class="p-8 bg-black/40 rounded-[2rem] border border-white/10 hover:border-primary/50 transition-all group cursor-pointer">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="text-[10px] text-primary tracking-[0.2em] uppercase font-headline">Creative Arena / US</span>
+                    <span class="text-[10px] text-white/20 uppercase font-headline">Ends in 28d</span>
+                </div>
+                <h4 class="font-serif-italic italic text-2xl mb-3 group-hover:text-primary transition-colors">The Gotham Carbon-Sink Grid</h4>
+                <p class="text-xs text-white/50 mb-4 leading-relaxed">AI-Editorial Summary: Integrating mass-timber modules into existing FAR structures. Seeking LEED Platinum specialists and AI-Visualization experts.</p>
+                <div class="flex gap-2">
+                    <span class="px-3 py-1 bg-primary/10 rounded-full text-[9px] uppercase text-primary border border-primary/20">Mass Timber</span>
+                    <span class="px-3 py-1 bg-white/5 rounded-full text-[9px] uppercase text-white/40 border border-white/5">Zoning Edge</span>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
@@ -141,7 +161,7 @@
                     <span class="text-[10px] text-white/20 uppercase font-headline">UDAAP Review</span>
                 </div>
                 <h4 class="font-serif-italic italic text-2xl mb-3 group-hover:text-primary transition-colors">Brooklyn Social Housing Consortium</h4>
-                <p class="text-xs text-white/50 mb-4">AI-Editorial Summary: Multi-site redevelopment requiring rapid zoning iteration via Teamcord AI tools. Preference for NYC DCP-experienced planners.</p>
+                <p class="text-xs text-white/50 mb-4 leading-relaxed">AI-Editorial Summary: Multi-site redevelopment requiring rapid zoning iteration via Teamcord AI tools. Preference for NYC DCP-experienced planners.</p>
                 <div class="flex gap-2">
                     <span class="px-3 py-1 bg-primary/10 rounded-full text-[9px] uppercase text-primary border border-primary/20">Zoning Verified</span>
                     <span class="px-3 py-1 bg-white/5 rounded-full text-[9px] uppercase text-white/40 border border-white/5">Social Housing</span>
@@ -154,11 +174,11 @@
 
 <section x-show="activeSection === 'dna'" x-cloak class="relative z-10 flex items-center justify-center h-full px-6 section-enter">
     <div class="liquid-glass-strong w-full max-w-4xl p-12 rounded-[3.5rem] text-center space-y-8">
-        <h3 class="font-headline text-4xl tracking-tighter uppercase">Initialize <span class="text-primary">DNA Protocol</span></h3>
+        <h3 class="font-headline text-4xl tracking-tighter uppercase text-white">Initialize <span class="text-primary">DNA Protocol</span></h3>
         <div class="border-2 border-dashed border-white/10 rounded-[2.5rem] p-16 hover:border-primary/40 transition-all cursor-pointer group bg-black/20">
             <div class="w-16 h-16 bg-white/5 rounded-full mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform"><span class="text-primary text-3xl font-bold">↑</span></div>
-            <p class="text-sm text-white/60 mb-2">Drag & Drop Documents for Editorial Synthesis</p>
-            <p class="text-[10px] text-white/20 uppercase tracking-[0.3em]">Sovereign Encryption Active</p>
+            <p class="text-sm text-white/60 mb-2 font-serif-italic italic">Drag & Drop Documents for Editorial Synthesis</p>
+            <p class="text-[10px] text-white/20 uppercase tracking-[0.3em]">Sovereign Encryption Active / No Data Resale</p>
         </div>
     </div>
 </section>
